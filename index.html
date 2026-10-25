@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Math Practice BD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div>
+    <h1 id="appTitle" data-i18n="title">Math Practice BD</h1>
+    <p class="subtitle" data-i18n="subtitle">Fast, offline arithmetic drills in English and Bangla.</p>
+  </div>
+  <button id="langBtn" type="button" data-i18n="langToggle">Bangla</button>
+</header>
+
+<main class="wrap">
+  <section id="setupPanel" class="panel">
+    <h2 data-i18n="modeLabel">Mode</h2>
+    <div class="mode-grid">
+      <button type="button" class="mode-card selected" data-mode="sprint">
+        <span class="mode-name" data-i18n="modeSprint">Sprint</span>
+        <span class="mode-desc" data-i18n="modeSprintDesc">60 seconds. Answer as many as you can.</span>
+      </button>
+      <button type="button" class="mode-card" data-mode="practice">
+        <span class="mode-name" data-i18n="modePractice">Practice</span>
+        <span class="mode-desc" data-i18n="modePracticeDesc">20 questions at your own pace.</span>
+      </button>
+    </div>
+
+    <h2 data-i18n="opsLabel">Operations (pick at least one)</h2>
+    <div class="op-grid" id="opGrid">
+      <button type="button" class="op-btn selected" data-op="+">+ <span data-i18n="opAdd">Addition</span></button>
+      <button type="button" class="op-btn selected" data-op="-">- <span data-i18n="opSub">Subtraction</span></button>
+      <button type="button" class="op-btn selected" data-op="x">x <span data-i18n="opMul">Multiplication</span></button>
+      <button type="button" class="op-btn selected" data-op="/">/ <span data-i18n="opDiv">Division</span></button>
+    </div>
+
+    <label class="field-label" for="difficultySelect" data-i18n="difficultyLabel">Difficulty</label>
+    <select id="difficultySelect">
+      <option value="easy" data-i18n="difficultyEasy">Easy</option>
+      <option value="medium" data-i18n="difficultyMedium">Medium</option>
+      <option value="hard" data-i18n="difficultyHard">Hard</option>
+    </select>
+
+    <p id="setupError" class="error" hidden></p>
+    <button id="startBtn" type="button" class="primary" data-i18n="start">Start</button>
+    <p class="best-line"><span data-i18n="bestLabel">Best</span>: <span id="setupBest">-</span></p>
+  </section>
+
+  <section id="gamePanel" class="panel" hidden>
+    <div class="stats">
+      <div><span data-i18n="score">Score</span>: <strong id="scoreEl">0</strong></div>
+      <div><span data-i18n="streak">Streak</span>: <strong id="streakEl">0</strong></div>
+      <div id="timerWrap"><span data-i18n="timeLeft">Time left</span>: <strong id="timerEl">60</strong></div>
+      <div id="progressWrap"><span data-i18n="progress">Progress</span>: <strong id="progressEl">0 / 20</strong></div>
+    </div>
+    <p class="q-label" data-i18n="questionLabel">Question</p>
+    <p id="questionEl" class="question">-</p>
+    <div class="answer-row">
+      <input id="answerInput" type="text" inputmode="numeric" autocomplete="off" data-i18n-placeholder="answerPlaceholder" placeholder="Your answer">
+      <button id="submitBtn" type="button" class="primary" data-i18n="submit">Submit</button>
+      <button id="skipBtn" type="button" data-i18n="skip">Skip</button>
+    </div>
+    <p id="feedbackEl" class="feedback" aria-live="polite"></p>
+  </section>
+
+  <section id="resultsPanel" class="panel" hidden>
+    <h2 data-i18n="resultsTitle">Results</h2>
+    <dl class="results">
+      <div><dt data-i18n="resultsScore">Score</dt><dd id="resScore">0</dd></div>
+      <div><dt data-i18n="resultsAnswered">Answered</dt><dd id="resAnswered">0</dd></div>
+      <div><dt data-i18n="resultsCorrect">Correct</dt><dd id="resCorrect">0</dd></div>
+      <div><dt data-i18n="resultsAccuracy">Accuracy</dt><dd id="resAccuracy">0%</dd></div>
+      <div><dt data-i18n="resultsBestStreak">Best streak</dt><dd id="resBestStreak">0</dd></div>
+      <div><dt data-i18n="resultsGrade">Grade</dt><dd id="resGrade">-</dd></div>
+      <div><dt data-i18n="resultsBest">Best score for this mode</dt><dd id="resBest">0</dd></div>
+    </dl>
+    <h3 data-i18n="resultsBreakdown">Per-operation breakdown</h3>
+    <ul id="resBreakdown" class="breakdown"></ul>
+    <button id="playAgainBtn" type="button" class="primary" data-i18n="playAgain">Play again</button>
+  </section>
+
+  <section id="historySection" class="panel">
+    <h2 data-i18n="historyTitle">Past sessions</h2>
+    <p id="historyEmpty" data-i18n="historyEmpty">No sessions yet. Play a game and it will appear here.</p>
+    <ul id="historyList" class="history"></ul>
+    <div class="clear-row">
+      <input id="clearInput" type="text" autocomplete="off" placeholder="DELETE">
+      <button id="clearBtn" type="button" disabled data-i18n="clearHistory">Clear history</button>
+    </div>
+    <p class="hint" data-i18n="clearHint">Type DELETE to enable clearing.</p>
+  </section>
+</main>
+
+<footer class="footer" data-i18n="footerDisclaimer">Offline personal practice tool. Not a school exam.</footer>
+<script src="logic.js"></script>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
